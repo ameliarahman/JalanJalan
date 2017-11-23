@@ -1,5 +1,5 @@
 const Wisata = require('../models/wisataModel');
-
+// uploadImage = require('../helpers/uploadImages');
 
 const createWisata = (req, res, next) => {
     Wisata.create({
@@ -18,7 +18,6 @@ const createWisata = (req, res, next) => {
             res.send(reason)
         })
 }
-
 
 
 module.exports = {
