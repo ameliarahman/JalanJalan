@@ -13,30 +13,69 @@ Vue.component('article-summary', {
 })
 
 Vue.component('create-article', {
+  template:`
+  <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <legend>
+              Upload File
+            </legend>
+          </div>
+          <div class="modal-body">
+            <form class="form-horizontal">
+              <fieldset>
+                <div class="form-group">
+                  <label for="input-image" class="col-lg-2 control-label">Picture</label>
+                  <div class="col-md-8">
+                    <input name="input-image" type="file" class="form-control" id="upload" placeholder="File Picture" v-model="imageName" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <h5 for="title">Title</h5>
+                  <div class="col-md-8">
+                    <input name="title" type="text" class="form-control" placeholder="Insert your title" v-model="title" required>
+                  </div>
+                </div>
+                <div class="form-group has-success">
+                  <h5 for="exampleTextarea">Description</h5>
+                  <div class="col-md-8">
+                    <textarea class="form-control" id="inputValid" rows="6" cols="60" v-model="description"></textarea>
+                  </div>
+                </div>
+                <div class="form-group has-success">
+                  <h5 for="category">Category</h5>
+                  <div class="col-md-8">
+                    <input name="category" type="text" class="form-control" id="inputValid" placeholder="input your category" v-model="category"></input>
+                  </div>
+                </div>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  `,
+  data: function () {
+    return {
+      imageUrl: '',
+      resultUpload: null,
+      closeModal: null,
+      title: '',
+      imageName: '',
+      description: '',
+      category: ''
+    }
+  }
+})
+
+Vue.component('upload-button', {
   template: `
-  <form>
-    <fieldset>
-      <legend>Write An Article</legend>
-      <div class="form-group has-success">
-        <h5>Title</h5>
-        <input type="text" class="form" id="inputValid" placeholder="Enter title of Article">
-      </div>
-      <div class="form-group has-success">
-        <h5 for="exampleTextarea">Description</h5>
-        <textarea class="form" id="inputValid" rows="6" cols="60"></textarea>
-      </div>
-      <div class="form-group">
-        <h5 for="exampleInputFile">Input Picture</h5>
-        <input type="file" class="form-file" id="exampleInputFile" aria-describedby="fileHelp">
-      </div>
-      <div class="form-group has-success">
-        <h5>Category</h5>
-        <input type="text" class="form" id="inputValid" placeholder="Category">
-      </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </fieldset>
-  </form>
-  `
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><span class="fa fa-plus"></span> Upload</button>
+    `
 })
 
 Vue.component('article-detail', {
@@ -57,7 +96,6 @@ Vue.component('article-detail', {
       <a href="#" class="card-link">Another link</a>
     </div>
     <div class="card-footer text-muted">
-      {{ create }}
     </div>
   </div>
   `
@@ -66,7 +104,6 @@ Vue.component('article-detail', {
 Vue.component('homepage', {
   template: `
   <div class="hello">
-    <navbar/>
     <h1>{{ msg }}</h1>
     <div class="container">
       <div class="row">
