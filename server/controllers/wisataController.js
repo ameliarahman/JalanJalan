@@ -1,5 +1,6 @@
 const Wisata = require('../models/wisataModel');
 <<<<<<< HEAD
+<<<<<<< HEAD
 // uploadImage = require('../helpers/uploadImages');
 
 const createWisata = (req, res, next) => {
@@ -25,6 +26,27 @@ module.exports = {
     createWisata
 }
 =======
+=======
+// uploadImage = require('../helpers/uploadImages');
+
+// const createWisata = (req, res, next) => {
+//     Wisata.create({
+//         title: req.body.title,
+//         description: req.body.description,
+//         category: req.body.category,
+//         image_url: req.file.filename
+//     })
+//         .then((dataWisata) => {
+//             res.send({
+//                 data: dataWisata,
+//                 message: "Successfully inserted!"
+//             })
+//         })
+//         .catch((reason) => {
+//             res.send(reason)
+//         })
+// }
+>>>>>>> 692265541497f4607b84e70a0f27525e327e2b8b
 
 const create = (req, res) => {
   let wisata = new Wisata({
@@ -90,4 +112,7 @@ module.exports = {
   update,
   remove,
 };
+<<<<<<< HEAD
 >>>>>>> 308abc3405645c508806079ff325e24072d74366
+=======
+>>>>>>> 692265541497f4607b84e70a0f27525e327e2b8b
