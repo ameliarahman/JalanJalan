@@ -1,0 +1,14 @@
+h1 {
+  margin-top: 60px
+}
+
+@media (max-width: 800px) {
+    .column {
+        width: 50%;
+    }
+}
+@media (max-width: 600px) {
+    .column {
+        width: 100%;
+   }
+}
