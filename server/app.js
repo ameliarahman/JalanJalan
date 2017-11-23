@@ -1,14 +1,25 @@
-var express = require('express');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+require('dotenv').config()
+var express = require('express'),
+  favicon = require('serve-favicon'),
+  logger = require('morgan'),
+  cookieParser = require('cookie-parser'),
+  bodyParser = require('body-parser'),
+  mongoose = require('mongoose'),
+  db = process.env.MONGO_URL,
+  index = require('./routes/index'),
+  users = require('./routes/users');
 
-var index = require('./routes/index');
-var users = require('./routes/users');
+mongoose.connection.openUri(db, (err) => {
+  if (err) {
+    console.log('database not connected')
+  }
+  else {
+    console.log('database connected')
+  }
+})
 
-var app = express();
 
+app = express();
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -18,14 +29,14 @@ app.use('/', index);
 app.use('/users', users);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
