@@ -7,8 +7,9 @@ var express = require('express'),
   mongoose = require('mongoose'),
   db = process.env.MONGO_URL,
   index = require('./routes/index'),
-  users = require('./routes/users');
-  wisata = require('./routes/wisata');
+  users = require('./routes/users'),
+  wisatas = require('./routes/wisatas');
+
 
 mongoose.connection.openUri(db, (err) => {
   if (err) {
@@ -28,7 +29,8 @@ app.use(cookieParser());
 
 app.use('/', index);
 app.use('/users', users);
-app.use('/wisata', wisata);
+app.use('/api/wisatas', wisatas);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
