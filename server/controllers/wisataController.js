@@ -1,16 +1,37 @@
 const Wisata = require('../models/wisataModel');
+// uploadImage = require('../helpers/uploadImages');
+
+// const createWisata = (req, res, next) => {
+//     Wisata.create({
+//         title: req.body.title,
+//         description: req.body.description,
+//         category: req.body.category,
+//         image_url: req.file.filename
+//     })
+//         .then((dataWisata) => {
+//             res.send({
+//                 data: dataWisata,
+//                 message: "Successfully inserted!"
+//             })
+//         })
+//         .catch((reason) => {
+//             res.send(reason)
+//         })
+// }
 
 const create = (req, res) => {
+  console.log('====================================');
+  console.log(req.file);
+  console.log('====================================');
   let wisata = new Wisata({
     title: req.body.title,
-    image_url: req.body.image_url,
+    image_url: req.file.cloudStoragePublicUrl,
     description: req.body.description,
     category: req.body.category,
   });
-
   wisata.save()
   .then(success => {
-    res.send(success);
+    res.status(200).send(success);
   })
   .catch(err => {
     res.status(500).send(err);

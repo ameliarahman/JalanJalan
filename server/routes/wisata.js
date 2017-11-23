@@ -1,8 +1,10 @@
 const router = require('express').Router();
-const Wisata = require('../controllers/wisataController');
+const Wisata = require('../controllers/wisataController'),
+  uploadImage = require('../helpers/uploadImages');
+
 
 router.get('/', Wisata.findAll);
-router.post('/', Wisata.create);
+router.post('/', uploadImage.multer.single('image_url'), uploadImage.sendImage,  Wisata.create);
 router.put('/:id', Wisata.update);
 router.delete('/:id', Wisata.remove);
 

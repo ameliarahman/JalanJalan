@@ -23,7 +23,7 @@ class User {
           let payload = {
             id: userData._id,
             name: userData.name,
-            username: userData.username
+            username: userData.username 
           }
           let token = jwt.sign(payload, key)
           console.log('Sukses login');
