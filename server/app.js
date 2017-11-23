@@ -10,6 +10,7 @@ var express = require('express'),
   users = require('./routes/users'),
   wisatas = require('./routes/wisatas');
 
+
 mongoose.connection.openUri(db, (err) => {
   if (err) {
     console.log('database not connected')
@@ -29,6 +30,7 @@ app.use(cookieParser());
 app.use('/', index);
 app.use('/users', users);
 app.use('/api/wisatas', wisatas);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
