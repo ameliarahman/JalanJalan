@@ -127,7 +127,7 @@ Vue.component('article-detail', {
     <div class="card-body">
       <p class="card-text">Category : {{ article.category }}</p>
       <p class="card-text">Description : {{ article.description }}</p>
-      <a id="share-facebook" data-service="facebook" @click="shareImage" role="button" data-title="share facebook"><i class="fa fa-facebook" aria-hidden="true">Facebook</a>
+      <a id="share-facebook" data-service="facebook" @click="shareImage" role="button" data-title="share facebook"><i class="fa fa-facebook" aria-hidden="true">Facebook </i></a>
       <a :href="article.image_url" :download="article.title" class="btn btn-info" role="button">Download</a>
       <a class="btn btn-info" role="button" @click="loveImage"><i class="fa fa-heart" aria-hidden="true"> {{love}}</i></a>
       </div>
@@ -255,7 +255,7 @@ Vue.component('login-modal', {
   }
 })
 
-Vue.component('logut')
+// Vue.component('logut')
 
 Vue.component('signup-modal', {
   template: ` <div class="modal fade" id="register" role="dialog">
@@ -285,6 +285,14 @@ Vue.component('signup-modal', {
               <input type="password" class="form-control" id="pwd" placeholder="Enter password" v-model="signup.password">
             </div>
           </div>
+
+          <div class="form-group">
+          <label class="control-label col-sm-2" for="pwd">Email:</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="email" placeholder="Enter Email" v-model="signup.email">
+            </div>
+          </div>
+
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-8">
               <button type="submit" class="btn btn-default" v-on:click="register(signup)">Register</button>
@@ -301,7 +309,8 @@ Vue.component('signup-modal', {
       signup: {
         name: '',
         username: '',
-        password: ''
+        password: '',
+        email: ''
       }
     }
   },
@@ -309,7 +318,8 @@ Vue.component('signup-modal', {
     register(signup) {
       axios.post('http://localhost:3000/users/signup', signup)
         .then(({ data }) => {
-          console.log(data)
+          alert("Please login first")
+          location.reload()
         })
         .catch(err => {
           console.error(err)
