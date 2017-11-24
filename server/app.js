@@ -8,7 +8,7 @@ var express = require('express'),
   db = process.env.MONGO_URL,
   index = require('./routes/index'),
   users = require('./routes/users'),
-  wisatas = require('./routes/wisatas');
+  wisatas = require('./routes/wisata');
 
 
 mongoose.connection.openUri(db, (err) => {
@@ -19,7 +19,6 @@ mongoose.connection.openUri(db, (err) => {
     console.log('database connected')
   }
 })
-
 
 app = express();
 app.use(logger('dev'));

@@ -20,16 +20,18 @@ const Wisata = require('../models/wisataModel');
 // }
 
 const create = (req, res) => {
+  console.log('====================================');
+  console.log(req.file);
+  console.log('====================================');
   let wisata = new Wisata({
     title: req.body.title,
-    image_url: req.body.image_url,
+    image_url: req.file.cloudStoragePublicUrl,
     description: req.body.description,
     category: req.body.category,
   });
-
   wisata.save()
   .then(success => {
-    res.send(success);
+    res.status(200).send(success);
   })
   .catch(err => {
     res.status(500).send(err);
