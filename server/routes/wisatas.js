@@ -1,6 +1,6 @@
 const express = require('express'),
     router = express.Router(),
-    wisataController = require('../controllers/wisataController'),
+    // Wisata = require('../controllers/wisataController'),
     uploadImage = require('../helpers/uploadImages');
 
 router.post('/',

@@ -15,70 +15,64 @@ Vue.component('article-summary', {
 })
 
 Vue.component('create-article', {
-  template:`
-  <div id="myModal" class="modal fade" role="dialog">
-      <div class="modal-dialog">
+  template: `
+  <div class="modal fade" id="create-article" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
 
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <legend>
-              Upload File
-            </legend>
-          </div>
-          <div class="modal-body">
-            <form class="form-horizontal">
-              <fieldset>
-                <div class="form-group">
-                  <label for="input-image" class="col-lg-2 control-label">Picture</label>
-                  <div class="col-md-8">
-                    <input name="input-image" type="file" class="form-control" id="upload" placeholder="File Picture" v-model="imageName" required>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <h5 for="title">Title</h5>
-                  <div class="col-md-8">
-                    <input name="title" type="text" class="form-control" placeholder="Insert your title" v-model="title" required>
-                  </div>
-                </div>
-                <div class="form-group has-success">
-                  <h5 for="exampleTextarea">Description</h5>
-                  <div class="col-md-8">
-                    <textarea class="form-control" id="inputValid" rows="6" cols="60" v-model="description"></textarea>
-                  </div>
-                </div>
-                <div class="form-group has-success">
-                  <h5 for="category">Category</h5>
-                  <div class="col-md-8">
-                    <input name="category" type="text" class="form-control" id="inputValid" placeholder="input your category" v-model="category"></input>
-                  </div>
-                </div>
-              </fieldset>
-            </form>
-          </div>
-        </div>
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Create Article</h4>
       </div>
+
+      <div class="modal-body">
+        <form class="form-horizontal">
+
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="title">Title:</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="title" placeholder="Enter Title">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="description">Description:</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="description" placeholder="Enter Description">
+            </div>
+          </div>
+
+          <div class="form-group">
+          <label class="control-label col-sm-2" for="category">Category:</label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" id="category" placeholder="Enter Category">
+          </div>
+          </div>
+          
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-8">
+              <button type="submit" class="btn btn-default">Upload</button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+
     </div>
-  `,
+  </div>
+</div>`,
   data: function () {
     return {
       imageUrl: '',
       resultUpload: null,
       closeModal: null,
       title: '',
-      imageName: '',
       description: '',
       category: ''
     }
   }
 })
 
-Vue.component('upload-button', {
-  template: `
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><span class="fa fa-plus"></span> Upload</button>
-    `
-})
 
 Vue.component('article-detail', {
   template: `
@@ -107,7 +101,7 @@ Vue.component('article-detail', {
 Vue.component('homepage', {
   template: `
   <div class="hello">
-    <h1>{{ msg }}</h1>
+    <h1 class="text-center">{{ msg }}</h1>
     <div class="container">
       <div class="row">
         <div class="col-md-3">
@@ -143,6 +137,81 @@ Vue.component('homepage', {
   }
 })
 
+
+Vue.component('login-modal', {
+  template: `
+  <div class="modal fade" id="signin" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Login</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="username">Username:</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="username" placeholder="Enter Username">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="pwd">Password:</label>
+            <div class="col-sm-8">
+              <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-8">
+              <button type="submit" class="btn btn-default">Log In</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>`
+})
+
+Vue.component('signup-modal', {
+  template: ` <div class="modal fade" id="register" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Register</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="name">Name:</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="name" placeholder="Enter Name" v-model="name">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="username">Username:</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="username" placeholder="Enter Username" v-model="username">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="pwd">Password:</label>
+            <div class="col-sm-8">
+              <input type="password" class="form-control" id="pwd" placeholder="Enter password" v-model="password">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-8">
+              <button type="submit" class="btn btn-default" v-on:click="register()">Register</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>`
+})
 new Vue({
   el: '#app'
 })
