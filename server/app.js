@@ -8,7 +8,8 @@ var express = require('express'),
   db = process.env.MONGO_URL,
   index = require('./routes/index'),
   users = require('./routes/users'),
-  wisatas = require('./routes/wisata');
+  wisatas = require('./routes/wisata'),
+  cors = require('cors')
 
 
 mongoose.connection.openUri(db, (err) => {
@@ -25,6 +26,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(cors())
 
 app.use('/', index);
 app.use('/users', users);
