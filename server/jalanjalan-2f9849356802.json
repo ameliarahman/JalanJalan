@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "burnished-attic-186705",
+  "private_key_id": "2f98493568026677180348a654809131e2f88d59",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDa2Iii9qhZmwSa\nQX/DvCZ10s5Kc6HXJEFZf7ip2OE9f/eQBfv1o96/1n/C4Dhd09kbRlAk/Q9xiPbg\n29JOx8E8z2pG3ed1/TsGOIOThc3D/qclUeCeV2vfuaLiRaQDEdvscpuqj7f53GJz\n1SCD6KqoNv1zyMFbRWh6+i6K0JsTOg3LkjT414BZsDUFKx/VGoYFiunq/N0NZuMY\naVM/UmfSkybOA/FDsoo4gIxvg9R9pqh5VC/+XsWPAPAlLI+BE83Pb4Q8FAEV0a+R\n1MFU5FYKqBRo+38mmtuG6ryIY82e7QrdDBfXL/Fd90cpKNJDBSiaI+2I3YAvdB04\nbpKa+OE/AgMBAAECggEAAfddwZUUwyVXlRPklCYjHv44uJuHBzn9/6dcSeO3IQh+\nzsOhqr3WWQPnhvaLxcVgVynlEMgDSlewMX9YHuQVkjh3hyZ5l2pMjExCsQx2jP3D\nPlxuImNnsTgSRL/abuVLWWRYOLVCMmkEAMVtSDIgImhyvjETZ6tdJR8NVFWhJxA4\ntukU990kMCVjRMj3GZQxY71tEyw4xcIRTdc5b9bJTP2KzUrEzGusDJ2yVqo25Lsd\nmouqnWCY3XSR9j44j2JpFEdpw4cEJrCM1FBK7AKeScR5F1ebcpRodCVCE7Ub74Lp\nVQAyr/Lxp2qt7Oaxq9+x0rJo366FMbZst8zJyoIkbQKBgQDvdT4pmgJDuxeblKxz\na3WU4Auyfk8WVc0V7Ia/pjleTh0jT0sY7CsEQFuTSGdx5L9Lfg4GNGYkr5doPD0B\nlU122XKXJ8ow2xqcD8fUnzlYgV9+9plaNoiid0MQ1QMBBNcXNj/upBiT7YvCgsaX\nAnJBfziFGL8rESZkNV2Mz9NQ1QKBgQDp9sUiXR5mA5JnqC/jLEnftn8UYjAnrU7+\n/bdFGL9Fd1d0GNAjQV6YwYw/f7S+EKz1zSUNSxMdoBxTKwMPJKscVMTAUzTeDVch\nn9nPhYmHegaibMpJqoAOpiJSFUM+9pxcLTJ29RTIvXHRfp+32nbGeRaium+KkJfh\nDpW6qziTwwKBgQDKVtWqLZsQRH2UV7LI7Nq0bAU2VIjbpLDhf7X1J65+Q59XgN9C\nNf27X+6Bq8LNeK80SVXsZEaTZVSZHZ2nQtPsQ54Sn+q4EcyQZr1CqzC32soo7JN0\nqXQXZJNlG7moGMDvukWXj029YhKg0ASjAcwuECRgQyL2b01zi6x7GfnD6QKBgQCl\n3CcMoW73avjTO0wXhEIqsjmMvb7doeMqqbrO5ShTmrMIvr5u/9yL9knyihob076J\n0pC9x8cZbXQnEYrtpVUYlI+WuGX2NQbb83J5x3Uj8cHaS71sU87Mk8Io5qHxdOqL\n/g6UflHprUOO/HFF6T3ind0KJ5kDZlYFWk2TM+a7+QKBgFYUgIx6rBOv+VfYKbMV\nXK+zE0Xpm3mguYSogYpyRd0IO5xl/qiTXY5AIe/G4lEfetITnkhTEHhJnutGtHe2\nbREJmDnRxW6OYyztOay9W3c8uPUA0e720DrzcwdaXk6YoN1YPLMjeGaq1m6IEF7i\nl3I3aKN6C/yFN/TgNyGvl8hx\n-----END PRIVATE KEY-----\n",
+  "client_email": "jalanjalanadmin@burnished-attic-186705.iam.gserviceaccount.com",
+  "client_id": "113820006351198538150",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/jalanjalanadmin%40burnished-attic-186705.iam.gserviceaccount.com"
+}
