@@ -129,12 +129,24 @@ Vue.component('article-detail', {
       <p class="card-text">Description : {{ article.description }}</p>
       <div class="fb-share-button" :data-href="article.image_url" data-layout="button_count" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fi.pinimg.com%2F736x%2Fe8%2F4f%2F8c%2Fe84f8c0c8b2f1a6303dd4c4a9cc91b9e--crater-lake-bandung.jpg&amp;src=sdkpreparse">Share</a></div>
       <a :href="article.image_url" :download="article.title" class="btn btn-info" role="button">Download</a>
+      <a class="btn btn-info" role="button" @click="loveImage"><i class="fa fa-heart" aria-hidden="true"> {{love}}</i></a>
     </div>
     <div class="card-footer text-muted">
     </div>
   </div>
   `,
-  props: ['article']
+  props: ['article'],
+  data: function () {
+    return {
+      email: '',
+      love: 0
+    }
+  },
+  methods: {
+    loveImage() {
+      this.love += 1
+    },
+  }
 })
 
 Vue.component('homepage', {
