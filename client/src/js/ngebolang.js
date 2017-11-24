@@ -32,6 +32,7 @@ Vue.component('create-article', {
             <label class="control-label col-sm-2" for="title">Title:</label>
             <div class="col-sm-8">
               <input v-model="wisata.title" type="text" class="form-control" name="title" id="title" placeholder="Enter Title">
+            </div>
           </div>
 
           <div class="form-group">
@@ -51,13 +52,13 @@ Vue.component('create-article', {
           <div class="form-group">
             <label class="control-label col-sm-2" for="file">Select your image:</label>
             <div class="col-sm-8">
-            <input v-model="wisata.image_url" type="file" name="image_url" id="image_url" />
+            <input v-on:change="onChangeImage()" type="file" name="image_url" id="image_url" />
             </div>
           </div>
 
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-8">
-              <button type="submit" class="btn btn-default">Upload</button>
+              <button type="submit" class="btn btn-default" @click.prevent="uploadImage()">Upload</button>
             </div>
           </div>
 
@@ -71,8 +72,6 @@ Vue.component('create-article', {
     return {
       wisata: {
         image_url: '',
-        resultUpload: null,
-        closeModal: null,
         title: '',
         description: '',
         category: ''
@@ -81,19 +80,38 @@ Vue.component('create-article', {
   },
   methods: {
     uploadImage() {
-      axios.post('http://localhost:3000/api/wisatas',
-        {
-          title: this.wisata.title,
-          description: this.wisata.description,
-          category: this.wisata.category,
-          image_url: this.wisata.image_url
-        })
+      let dataImage = this
+      let data = new FormData()
+      // data.append('wisata.image_url', dataImage.wisata.image_url)
+      // var formData = new FormData();
+      var imagefile = document.querySelector('#image_url');
+      var category = document.querySelector('#category').value;
+      var description = document.querySelector('#description').value;
+      var title = document.querySelector('#title').value;
+      data.append("image_url", imagefile.files[0]);
+      data.append("title", title);
+      data.append("description", description);
+      data.append("category", category);
+      console.log(data, 'tuturu')
+      console.log('====================================');
+      console.log(this.wisata);
+      console.log('====================================');
+      axios.post('http://localhost:3000/api/wisatas', data)
         .then((dataWisata) => {
-          console.log(dataWisata)
+          alert("Data successfully inserted!")
+          location.reload()
         })
         .catch((reason) => {
           console.log(reason)
         })
+    },
+    onChangeImage() {
+      var file = event.target.files[0]
+      this.image = file
+      this.wisata.image_url = document.getElementById('image_url').value
+      console.log('====================================');
+      console.log(this.wisata.image_url);
+      console.log('====================================');
     }
   }
 })
@@ -201,12 +219,12 @@ Vue.component('login-modal', {
     }
   },
   methods: {
-    signin (login) {
+    signin(login) {
       axios.post('http://localhost:3000/users/signin', login)
-      .then(({data}) => {
-        console.log(data)
-      })
-      .catch(err => console.error(data))
+        .then(({ data }) => {
+          console.log(data)
+        })
+        .catch(err => console.error(data))
     }
   }
 })
@@ -260,14 +278,14 @@ Vue.component('signup-modal', {
     }
   },
   methods: {
-    register (signup) {
+    register(signup) {
       axios.post('http://localhost:3000/users/signup', signup)
-      .then(({data}) => {
-        console.log(data)
-      })
-      .catch(err => {
-        console.error(err)
-      })
+        .then(({ data }) => {
+          console.log(data)
+        })
+        .catch(err => {
+          console.error(err)
+        })
     }
   }
 })
