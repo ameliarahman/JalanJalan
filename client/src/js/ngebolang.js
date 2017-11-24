@@ -125,12 +125,12 @@ Vue.component('article-detail', {
       <img :src="article.image_url" style="height: 200px;" alt="Card image">
     </div>
     <div class="card-body">
-      <p class="card-text">{{ article.description }}</p>
-      <button type="submit" class="btn btn-default" @click="signin(login)">Share</button>
-      <button type="submit" class="btn btn-default" @click="signin(login)">Download</button>
+      <p class="card-text">Category : {{ article.category }}</p>
+      <p class="card-text">Description : {{ article.description }}</p>
+      <button href="#" class="card-link">Share</button>
+      <a :href="article.image_url" :download="article.title" class="btn btn-info" role="button">Download</a>
     </div>
     <div class="card-footer text-muted">
-      {{ article.category }}
     </div>
   </div>
   `,
