@@ -26,29 +26,35 @@ Vue.component('create-article', {
       </div>
 
       <div class="modal-body">
-        <form class="form-horizontal">
+        <form class="form-horizontal" enctype="multipart/form-data">
 
           <div class="form-group">
             <label class="control-label col-sm-2" for="title">Title:</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" id="title" placeholder="Enter Title">
-            </div>
+              <input v-model="wisata.title" type="text" class="form-control" name="title" id="title" placeholder="Enter Title">
           </div>
 
           <div class="form-group">
             <label class="control-label col-sm-2" for="description">Description:</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" id="description" placeholder="Enter Description">
+              <input v-model="wisata.description" type="text" class="form-control" name="description" id="description" placeholder="Enter Description">
             </div>
           </div>
 
           <div class="form-group">
           <label class="control-label col-sm-2" for="category">Category:</label>
           <div class="col-sm-8">
-            <input type="text" class="form-control" id="category" placeholder="Enter Category">
+            <input v-model="wisata.category" type="text" class="form-control" name="category" id="category" placeholder="Enter Category">
           </div>
           </div>
-          
+
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="file">Select your image:</label>
+            <div class="col-sm-8">
+            <input v-model="wisata.image_url" type="file" name="image_url" id="image_url" />
+            </div>
+          </div>
+
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-8">
               <button type="submit" class="btn btn-default">Upload</button>
@@ -63,12 +69,31 @@ Vue.component('create-article', {
 </div>`,
   data: function () {
     return {
-      imageUrl: '',
-      resultUpload: null,
-      closeModal: null,
-      title: '',
-      description: '',
-      category: ''
+      wisata: {
+        image_url: '',
+        resultUpload: null,
+        closeModal: null,
+        title: '',
+        description: '',
+        category: ''
+      }
+    }
+  },
+  methods: {
+    uploadImage() {
+      axios.post('http://localhost:3000/api/wisatas',
+        {
+          title: this.wisata.title,
+          description: this.wisata.description,
+          category: this.wisata.category,
+          image_url: this.wisata.image_url
+        })
+        .then((dataWisata) => {
+          console.log(dataWisata)
+        })
+        .catch((reason) => {
+          console.log(reason)
+        })
     }
   }
 })
@@ -117,7 +142,7 @@ Vue.component('homepage', {
   data: function () {
     return {
       msg: 'Ngebolang Yuks!',
-      articles : []
+      articles: []
     }
   },
   methods: {
@@ -203,14 +228,23 @@ Vue.component('signup-modal', {
           </div>
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-8">
-              <button type="submit" class="btn btn-default" v-on:click="register()">Register</button>
+              <button type="submit" class="btn btn-default" v-on:click="register">Register</button>
             </div>
           </div>
         </form>
       </div>
     </div>
   </div>
-</div>`
+</div>`,
+  data: function () {
+    return {
+      signup: {
+        name: '',
+        username: '',
+        password: ''
+      }
+    }
+  }
 })
 new Vue({
   el: '#app'
