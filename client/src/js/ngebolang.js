@@ -13,7 +13,7 @@ Vue.component('article-summary', {
 })
 
 Vue.component('create-article', {
-  template:`
+  template: `
   <div id="myModal" class="modal fade" role="dialog">
       <div class="modal-dialog">
 

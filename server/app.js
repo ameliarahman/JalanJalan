@@ -7,20 +7,8 @@ var express = require('express'),
   mongoose = require('mongoose'),
   db = process.env.MONGO_URL,
   index = require('./routes/index'),
-<<<<<<< HEAD
-<<<<<<< HEAD
   users = require('./routes/users'),
-  wisatas = require('./routes/wisatas');
-=======
-  users = require('./routes/users');
-  wisata = require('./routes/wisata');
->>>>>>> 308abc3405645c508806079ff325e24072d74366
-=======
-  users = require('./routes/users'),
-  wisatas = require('./routes/wisatas');
-
->>>>>>> 692265541497f4607b84e70a0f27525e327e2b8b
-
+  wisata = require('./routes/wisatas');
 mongoose.connection.openUri(db, (err) => {
   if (err) {
     console.log('database not connected')
@@ -39,16 +27,7 @@ app.use(cookieParser());
 
 app.use('/', index);
 app.use('/users', users);
-<<<<<<< HEAD
-<<<<<<< HEAD
-app.use('/api/wisatas', wisatas);
-=======
-app.use('/wisata', wisata);
->>>>>>> 308abc3405645c508806079ff325e24072d74366
-=======
-app.use('/api/wisatas', wisatas);
-
->>>>>>> 692265541497f4607b84e70a0f27525e327e2b8b
+app.use('/api/wisatas', wisata);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
