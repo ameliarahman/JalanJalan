@@ -1,53 +1,49 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>Ngebolang Yuks</title>
-    <script src="https://unpkg.com/vue"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-      crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://bootswatch.com/4/journal/bootstrap.min.css">
-    <link rel="stylesheet" href="https://bootswatch.com/4/journal/_variables.scss">
-    <link rel="stylesheet" href="src/style/ngebolang.css">
-  </head>
-  <body>
-    <div id="app">
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02"
-          aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        <div class="collapse navbar-collapse" id="navbarColor02">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="/#">Home
-                <span class="sr-only">(current)</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/#">Create Article</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Pricing</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
-            </li>
-          </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <upload-button></upload-button>
-            <input class="form-control mr-sm-2" type="text" placeholder="Search">
-            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-          </form>
-        </div>
-      </nav>
-      <create-article></create-article>
-      <homepage/>
-    </div>
 
-    <script src="src/js/ngebolang.js"></script>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Ngebolang Yuks</title>
+  <script src="https://unpkg.com/vue"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" href="src/style/ngebolang.css">
+</head>
+
+<body>
+  <div id="app">
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid text-center">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="index.html">JalanJalan</a></li>
+          <li data-toggle="modal" data-target="#create-article">
+            <a href="#">
+              Create Articel
+            </a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li data-toggle="modal" data-target="#signin"><a href="#">Sign In</a></li> ||
+          <li data-toggle="modal" data-target="#register"><a href="#">Register</a></li>
+        </ul>
+
+        <!-- Modal Sign In -->
+        <login-modal></login-modal>
+
+        <!-- Modal Register -->
+        <signup-modal></signup-modal>
+
+      </div>
+    </nav>
+
+    <create-article></create-article>
+    <homepage/>
+  </div>
+
+  <script src="src/js/ngebolang.js"></script>
+</body>
+
 </html>

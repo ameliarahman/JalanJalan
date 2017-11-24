@@ -8,7 +8,9 @@ var express = require('express'),
   db = process.env.MONGO_URL,
   index = require('./routes/index'),
   users = require('./routes/users'),
-  wisata = require('./routes/wisatas');
+  wisatas = require('./routes/wisata');
+
+
 mongoose.connection.openUri(db, (err) => {
   if (err) {
     console.log('database not connected')
@@ -18,7 +20,6 @@ mongoose.connection.openUri(db, (err) => {
   }
 })
 
-
 app = express();
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -27,7 +28,7 @@ app.use(cookieParser());
 
 app.use('/', index);
 app.use('/users', users);
-app.use('/api/wisatas', wisata);
+app.use('/api/wisatas', wisatas);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
