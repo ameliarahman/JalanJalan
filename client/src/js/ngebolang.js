@@ -52,13 +52,13 @@ Vue.component('create-article', {
           <div class="form-group">
             <label class="control-label col-sm-2" for="file">Select your image:</label>
             <div class="col-sm-8">
-            <input v-model="wisata.image_url" type="file" name="image_url" id="image_url" />
+            <input v-on:change="onChangeImage()" type="file" name="image_url" id="image_url" />
             </div>
           </div>
   
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-8">
-              <button type="submit" class="btn btn-default" v-on:click="uploadImage">Upload</button>
+              <button type="submit" class="btn btn-default" @click.prevent="uploadImage()">Upload</button>
             </div>
           </div>
 
@@ -72,8 +72,6 @@ Vue.component('create-article', {
     return {
       wisata: {
         image_url: '',
-        resultUpload: null,
-        closeModal: null,
         title: '',
         description: '',
         category: ''
@@ -82,19 +80,38 @@ Vue.component('create-article', {
   },
   methods: {
     uploadImage() {
-      axios.post('http://localhost:3000/api/wisatas',
-        {
-          title: this.wisata.title,
-          description: this.wisata.description,
-          category: this.wisata.category,
-          image_url: this.wisata.image_url
-        })
+      let dataImage = this
+      let data = new FormData()
+      // data.append('wisata.image_url', dataImage.wisata.image_url)
+      // var formData = new FormData();
+      var imagefile = document.querySelector('#image_url');
+      var category = document.querySelector('#category').value;
+      var description = document.querySelector('#description').value;
+      var title = document.querySelector('#title').value;
+      data.append("image_url", imagefile.files[0]);
+      data.append("title", title);
+      data.append("description", description);
+      data.append("category", category);
+      console.log(data, 'tuturu')
+      console.log('====================================');
+      console.log(this.wisata);
+      console.log('====================================');
+      axios.post('http://localhost:3000/api/wisatas', data)
         .then((dataWisata) => {
-          console.log(dataWisata)
+          alert("Data successfully inserted!")
+          location.reload()
         })
         .catch((reason) => {
           console.log(reason)
         })
+    },
+    onChangeImage() {
+      var file = event.target.files[0]
+      this.image = file
+      this.wisata.image_url = document.getElementById('image_url').value
+      console.log('====================================');
+      console.log(this.wisata.image_url);
+      console.log('====================================');
     }
   }
 })
@@ -104,17 +121,13 @@ Vue.component('article-detail', {
   template: `
   <div class="card">
     <h3 class="card-header">{{ article.title }}</h3>
-    <div class="card-body">
-      <h5 class="card-title">Special title treatment</h5>
-      <h6 class="card-subtitle text-muted">Support card subtitle</h6>
-    </div>
     <div class="column">
       <img :src="article.image_url" style="height: 200px;" alt="Card image">
     </div>
     <div class="card-body">
       <p class="card-text">{{ article.description }}</p>
-      <a href="#" class="card-link">Card link</a>
-      <a href="#" class="card-link">Another link</a>
+      <button href="#" class="card-link">Share</button>
+      <button href="#" class="card-link">Download</button>
     </div>
     <div class="card-footer text-muted">
       {{ article.category }}
@@ -178,25 +191,42 @@ Vue.component('login-modal', {
           <div class="form-group">
             <label class="control-label col-sm-2" for="username">Username:</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" id="username" placeholder="Enter Username">
+              <input type="text" class="form-control" id="username" placeholder="Enter Username" v-model="login.username">
             </div>
           </div>
           <div class="form-group">
             <label class="control-label col-sm-2" for="pwd">Password:</label>
             <div class="col-sm-8">
-              <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+              <input type="password" class="form-control" id="pwd" placeholder="Enter password" v-model="login.password">
             </div>
           </div>
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-8">
-              <button type="submit" class="btn btn-default">Log In</button>
+              <button type="submit" class="btn btn-default" @click="signin(login)">Log In</button>
             </div>
           </div>
         </form>
       </div>
     </div>
   </div>
-</div>`
+</div>`,
+  data: function () {
+    return {
+      login: {
+        username: '',
+        password: ''
+      }
+    }
+  },
+  methods: {
+    signin(login) {
+      axios.post('http://localhost:3000/users/signin', login)
+        .then(({ data }) => {
+          console.log(data)
+        })
+        .catch(err => console.error(data))
+    }
+  }
 })
 
 Vue.component('signup-modal', {
@@ -212,24 +242,25 @@ Vue.component('signup-modal', {
           <div class="form-group">
             <label class="control-label col-sm-2" for="name">Name:</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" id="name" placeholder="Enter Name" v-model="name">
+              <input type="text" class="form-control" id="name" placeholder="Enter Name" v-model="signup.name">
             </div>
           </div>
           <div class="form-group">
             <label class="control-label col-sm-2" for="username">Username:</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" id="username" placeholder="Enter Username" v-model="username">
+              <input type="text" class="form-control" id="username" placeholder="Enter Username" v-model="signup.username">
             </div>
           </div>
           <div class="form-group">
             <label class="control-label col-sm-2" for="pwd">Password:</label>
             <div class="col-sm-8">
-              <input type="password" class="form-control" id="pwd" placeholder="Enter password" v-model="password">
+              <input type="password" class="form-control" id="pwd" placeholder="Enter password" v-model="signup.password">
             </div>
           </div>
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-8">
-              <button type="submit" class="btn btn-default" v-on:click="register">Register</button>
+              <button type="submit" class="btn btn-default" v-on:click="register(signup)">Register</button>
+
             </div>
           </div>
         </form>
@@ -244,6 +275,17 @@ Vue.component('signup-modal', {
         username: '',
         password: ''
       }
+    }
+  },
+  methods: {
+    register(signup) {
+      axios.post('http://localhost:3000/users/signup', signup)
+        .then(({ data }) => {
+          console.log(data)
+        })
+        .catch(err => {
+          console.error(err)
+        })
     }
   }
 })

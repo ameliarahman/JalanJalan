@@ -1,4 +1,4 @@
-require('dotenv').config
+require('dotenv').config()
 const Multer = require('multer');
 
 const Storage = require('@google-cloud/storage');
