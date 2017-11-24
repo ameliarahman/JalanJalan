@@ -25,6 +25,7 @@ const userSchema = new Schema({
             message: '{VALUE} is not a valid email'
         },
         required: [true, 'Email is required']
+
     }
 })
 
