@@ -16,14 +16,14 @@ class User {
     });
   }
 
-  static signin (req, res) {
+  static signin(req, res) {
     UserModel.findOne({ username: req.body.username })
       .then(userData => {
         if (bcrypt.compareSync(req.body.password, userData.password)) {
           let payload = {
             id: userData._id,
             name: userData.name,
-            username: userData.username 
+            username: userData.username
           }
           let token = jwt.sign(payload, key)
           console.log('Sukses login');
@@ -38,6 +38,17 @@ class User {
         res.status(500).send(err)
       })
   }
+
+  static getAllDataUser(req, res) {
+    UserModel.find()
+      .then((dataUsers) => {
+        res.send(dataUsers)
+      })
+      .catch((reason) => {
+        res.send(reason)
+      })
+  }
 }
+
 
 module.exports = User;

@@ -120,14 +120,14 @@ Vue.component('create-article', {
 Vue.component('article-detail', {
   template: `
   <div class="card">
-    <h3 class="card-header">{{ article.title }}</h3>
+    <h3 class="card-header text-center">{{ article.title }}</h3>
     <div class="column">
       <img :src="article.image_url" style="height: 200px;" alt="Card image">
     </div>
     <div class="card-body">
       <p class="card-text">{{ article.description }}</p>
-      <button href="#" class="card-link">Share</button>
-      <button href="#" class="card-link">Download</button>
+      <button type="submit" class="btn btn-default" @click="signin(login)">Share</button>
+      <button type="submit" class="btn btn-default" @click="signin(login)">Download</button>
     </div>
     <div class="card-footer text-muted">
       {{ article.category }}
@@ -222,12 +222,15 @@ Vue.component('login-modal', {
     signin(login) {
       axios.post('http://localhost:3000/users/signin', login)
         .then(({ data }) => {
-          console.log(data)
+          alert("Enjoy!")
+          location.reload()
         })
         .catch(err => console.error(data))
     }
   }
 })
+
+Vue.component('logut')
 
 Vue.component('signup-modal', {
   template: ` <div class="modal fade" id="register" role="dialog">
