@@ -32,6 +32,7 @@ Vue.component('create-article', {
             <label class="control-label col-sm-2" for="title">Title:</label>
             <div class="col-sm-8">
               <input v-model="wisata.title" type="text" class="form-control" name="title" id="title" placeholder="Enter Title">
+            </div>
           </div>
 
           <div class="form-group">
@@ -54,7 +55,7 @@ Vue.component('create-article', {
             <input v-model="wisata.image_url" type="file" name="image_url" id="image_url" />
             </div>
           </div>
-
+  
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-8">
               <button type="submit" class="btn btn-default" v-on:click="uploadImage">Upload</button>
