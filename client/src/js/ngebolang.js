@@ -127,14 +127,39 @@ Vue.component('article-detail', {
     <div class="card-body">
       <p class="card-text">Category : {{ article.category }}</p>
       <p class="card-text">Description : {{ article.description }}</p>
-      <button href="#" class="card-link">Share</button>
+      <a id="share-facebook" data-service="facebook" @click="shareImage" role="button" data-title="share facebook"><i class="fa fa-facebook" aria-hidden="true">Facebook</a>
       <a :href="article.image_url" :download="article.title" class="btn btn-info" role="button">Download</a>
-    </div>
+      <a class="btn btn-info" role="button" @click="loveImage"><i class="fa fa-heart" aria-hidden="true"> {{love}}</i></a>
+      </div>
     <div class="card-footer text-muted">
     </div>
   </div>
   `,
-  props: ['article']
+  props: ['article'],
+  data: function () {
+    return {
+      email: '',
+      love: 0
+    }
+
+  },
+  methods: {
+    shareImage() {
+      var list = document.querySelector('#share-facebook')
+      Share.init(list, {
+        title: 'share it',
+        url: 'https://github.com/popomore/social-share'
+      });
+    },
+    loveImage() {
+      if (this.love == 1) {
+        this.love = 0
+      } else {
+        this.love += 1
+      }
+
+    },
+  }
 })
 
 Vue.component('homepage', {
