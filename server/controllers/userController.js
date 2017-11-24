@@ -9,6 +9,7 @@ class User {
       name: req.body.name,
       username: req.body.username,
       password: req.body.password,
+      email: req.body.email
     }).then((user) => {
       res.send(user);
     }).catch((err) => {
@@ -23,7 +24,8 @@ class User {
           let payload = {
             id: userData._id,
             name: userData.name,
-            username: userData.username 
+            username: userData.username,
+            email: userData.email
           }
           let token = jwt.sign(payload, key)
           console.log('Sukses login');
